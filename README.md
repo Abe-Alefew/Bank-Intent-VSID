@@ -271,14 +271,3 @@ bankintent-vsid/
 ├── data/                              # Local dataset cache (auto-populated)
 └── results/                           # JSON run logs, REPORT.md, and serialized artifacts
 ```
-
----
-
-## Rubric & Learning Objectives Alignment
-
-| Learning Objective | Requirement | Project Evidence |
-|---|---|---|
-| **LO1: Self-Learning Taxonomy** | Distinguish output refinement, model-weight self-training, and RSI with risks and validation methods. | Detailed comparison matrix in `docs/IMPLEMENTATION_PLAN.md` §3.1, Streamlit Page 1, and `docs/PRESENTATION_SLIDES.md`. |
-| **LO2: Distillation Mechanics** | Explain temperature, soft targets, dark knowledge; evaluate distilled model against non-distilled baselines. | Implemented `kd_loss` in [models.py](file:///src/vsid/models.py); systematic $S_0\text{--}S_5$ ablation ladder isolating soft targets vs. data size; Streamlit Page 4. |
-| **LO3: Bounded Loops & Safety** | Implement bounded loop with held-out validation, external verification, and rollback. | Multi-gate controller in [loop.py](file:///src/vsid/loop.py); Wilson LB gate ($G_1$), Entropy gate ($G_3$), Bootstrap gate ($G_2$); 5 actual rollbacks logged across 3 seeds. |
-| **LO4: Technical Communication** | Deliver clear 20-minute presentation, quantitative report, and honest limitation disclosure. | Auto-generated [results/REPORT.md](file:///results/REPORT.md); 20-minute deck in [docs/PRESENTATION_SLIDES.md](file:///docs/PRESENTATION_SLIDES.md); 2-page brief in [docs/EXECUTIVE_SUMMARY.md](file:///docs/EXECUTIVE_SUMMARY.md). |
