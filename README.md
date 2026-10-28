@@ -1,4 +1,4 @@
-# BankIntent-VSID — Verified Self-Improvement + Knowledge Distillation
+# BankIntent
 
 **Edge-Deployable Banking Intent Classification via Externally Verified Self-Training and Response-Based Distillation**
 
