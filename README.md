@@ -248,10 +248,6 @@ The dashboard provides a 7-page interactive evaluation interface:
 bankintent-vsid/
 ├── README.md                          # Project documentation and benchmark overview
 ├── requirements.txt                   # Minimal CPU-only dependencies (torch, scikit-learn, etc.)
-├── docs/
-│   ├── IMPLEMENTATION_PLAN.md         # Comprehensive engineering specification & rubric mapping
-│   ├── PRESENTATION_SLIDES.md         # 20-minute slide deck script with timing & Q&A defense
-│   └── EXECUTIVE_SUMMARY.md           # 2-page executive briefing & technical report
 ├── scripts/
 │   ├── download_data.py               # Auto-fetch Banking77 CSVs from PolyAI repository
 │   ├── run_pipeline.py                # Pipeline driver for full multi-seed experiments
