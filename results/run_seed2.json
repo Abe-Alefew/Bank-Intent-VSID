@@ -1,0 +1,1282 @@
+{
+ "seed": 2,
+ "config": {
+  "dataset": "banking77",
+  "data_dir": "C:\\Users\\Abraham A. Alefew\\Desktop\\Icog\\trainings\\RSL and Knowledge DIstillation\\bankintent-vsid\\bankintent-vsid\\data",
+  "results_dir": "C:\\Users\\Abraham A. Alefew\\Desktop\\Icog\\trainings\\RSL and Knowledge DIstillation\\bankintent-vsid\\bankintent-vsid\\results",
+  "seeds": [
+   0,
+   1,
+   2
+  ],
+  "n_dev": 1000,
+  "seed_per_class": 10,
+  "teacher_word_features": 5000,
+  "teacher_char_features": 15000,
+  "student_word_features": 3000,
+  "verifier_char_features": 30000,
+  "teacher_hidden": 256,
+  "student_hidden": 64,
+  "dropout": 0.3,
+  "label_smoothing": 0.05,
+  "epochs_teacher": 20,
+  "epochs_student": 25,
+  "lr": 0.002,
+  "weight_decay": 0.0001,
+  "batch_size": 64,
+  "torch_threads": 1,
+  "rounds": 4,
+  "audit_per_round": 100,
+  "tau0": 0.6,
+  "tau_min": 0.3,
+  "tau_max": 0.9,
+  "tau_step": 0.05,
+  "verifier_topk": 1,
+  "class_cap_factor": 1.5,
+  "p_min": 0.9,
+  "wilson_z": 1.2816,
+  "min_entropy": 0.85,
+  "min_gain": 0.003,
+  "p_boot": 0.7,
+  "n_boot": 500,
+  "patience": 2,
+  "kd_alpha": 0.5,
+  "kd_temperature": 4.0,
+  "sweep_temperatures": [
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "sweep_alphas": [
+   0.0,
+   0.5
+  ],
+  "latency_queries": 300,
+  "latency_warmup": 30
+ },
+ "split_info": {
+  "n_original_train": 10003,
+  "n_exact_duplicates_removed": 4,
+  "n_train_rows_also_in_test_removed": 7,
+  "sizes": {
+   "seed": 770,
+   "pool": 8222,
+   "dev": 1000,
+   "test": 3080
+  },
+  "pairwise_text_overlap": {
+   "seed&pool": 0,
+   "seed&dev": 0,
+   "seed&test": 0,
+   "pool&dev": 0,
+   "pool&test": 0,
+   "dev&test": 0
+  },
+  "leakage_free": true,
+  "seed_per_class": 10
+ },
+ "classes": [
+  "Refund_not_showing_up",
+  "activate_my_card",
+  "age_limit",
+  "apple_pay_or_google_pay",
+  "atm_support",
+  "automatic_top_up",
+  "balance_not_updated_after_bank_transfer",
+  "balance_not_updated_after_cheque_or_cash_deposit",
+  "beneficiary_not_allowed",
+  "cancel_transfer",
+  "card_about_to_expire",
+  "card_acceptance",
+  "card_arrival",
+  "card_delivery_estimate",
+  "card_linking",
+  "card_not_working",
+  "card_payment_fee_charged",
+  "card_payment_not_recognised",
+  "card_payment_wrong_exchange_rate",
+  "card_swallowed",
+  "cash_withdrawal_charge",
+  "cash_withdrawal_not_recognised",
+  "change_pin",
+  "compromised_card",
+  "contactless_not_working",
+  "country_support",
+  "declined_card_payment",
+  "declined_cash_withdrawal",
+  "declined_transfer",
+  "direct_debit_payment_not_recognised",
+  "disposable_card_limits",
+  "edit_personal_details",
+  "exchange_charge",
+  "exchange_rate",
+  "exchange_via_app",
+  "extra_charge_on_statement",
+  "failed_transfer",
+  "fiat_currency_support",
+  "get_disposable_virtual_card",
+  "get_physical_card",
+  "getting_spare_card",
+  "getting_virtual_card",
+  "lost_or_stolen_card",
+  "lost_or_stolen_phone",
+  "order_physical_card",
+  "passcode_forgotten",
+  "pending_card_payment",
+  "pending_cash_withdrawal",
+  "pending_top_up",
+  "pending_transfer",
+  "pin_blocked",
+  "receiving_money",
+  "request_refund",
+  "reverted_card_payment?",
+  "supported_cards_and_currencies",
+  "terminate_account",
+  "top_up_by_bank_transfer_charge",
+  "top_up_by_card_charge",
+  "top_up_by_cash_or_cheque",
+  "top_up_failed",
+  "top_up_limits",
+  "top_up_reverted",
+  "topping_up_by_card",
+  "transaction_charged_twice",
+  "transfer_fee_charged",
+  "transfer_into_account",
+  "transfer_not_received_by_recipient",
+  "transfer_timing",
+  "unable_to_verify_identity",
+  "verify_my_identity",
+  "verify_source_of_funds",
+  "verify_top_up",
+  "virtual_card_not_working",
+  "visa_or_mastercard",
+  "why_verify_identity",
+  "wrong_amount_of_cash_received",
+  "wrong_exchange_rate_for_cash_withdrawal"
+ ],
+ "systems": [
+  {
+   "name": "T0 teacher, seed labels only (start of loop)",
+   "acc": 0.7340909090909091,
+   "macro_f1": 0.7338212234397565,
+   "acc_ci95": [
+    0.7201298701298702,
+    0.7506574675324675
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 1.2302499962970614,
+    "p95_ms": 2.6660400326363742,
+    "model_only_p50_ms": 0.19175000488758087,
+    "throughput_qps": 9632.316406342088
+   },
+   "kind": "teacher",
+   "human_labels": 770
+  },
+  {
+   "name": "T1 teacher, label-budget-matched supervised",
+   "acc": 0.7954545454545454,
+   "macro_f1": 0.7940204615155986,
+   "acc_ci95": [
+    0.7808441558441559,
+    0.8094237012987012
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 1.0415001306682825,
+    "p95_ms": 2.663709910120815,
+    "model_only_p50_ms": 0.17690006643533707,
+    "throughput_qps": 6377.296793087114
+   },
+   "kind": "teacher",
+   "human_labels": 1170
+  },
+  {
+   "name": "T2 teacher, naive self-training (no verifier, no gates)",
+   "acc": 0.7840909090909091,
+   "macro_f1": 0.7818604045602082,
+   "acc_ci95": [
+    0.7694724025974026,
+    0.798051948051948
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 1.742499996908009,
+    "p95_ms": 2.874244970735163,
+    "model_only_p50_ms": 0.2850000746548176,
+    "throughput_qps": 8392.644629506938
+   },
+   "kind": "teacher",
+   "human_labels": 770
+  },
+  {
+   "name": "T3 teacher, verifier only (no audit, no gates)",
+   "acc": 0.7824675324675324,
+   "macro_f1": 0.77874462717687,
+   "acc_ci95": [
+    0.7681737012987013,
+    0.7967613636363636
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 1.4937500236555934,
+    "p95_ms": 2.957525034435094,
+    "model_only_p50_ms": 0.2480499679222703,
+    "throughput_qps": 5882.05561506887
+   },
+   "kind": "teacher",
+   "human_labels": 770
+  },
+  {
+   "name": "T4 teacher, FULL verified loop",
+   "acc": 0.7824675324675324,
+   "macro_f1": 0.7794259542063373,
+   "acc_ci95": [
+    0.766875,
+    0.7967532467532468
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 2.5184002006426454,
+    "p95_ms": 2.931645081844181,
+    "model_only_p50_ms": 0.3960499307140708,
+    "throughput_qps": 9268.84723884003
+   },
+   "kind": "teacher",
+   "human_labels": 1170
+  },
+  {
+   "name": "T5 teacher, oracle (all pool labels; upper bound)",
+   "acc": 0.9172077922077922,
+   "macro_f1": 0.9173764119886071,
+   "acc_ci95": [
+    0.9074675324675324,
+    0.9272727272727272
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 1.2268000282347202,
+    "p95_ms": 2.5960601982660596,
+    "model_only_p50_ms": 0.19339995924383402,
+    "throughput_qps": 9601.752324199866
+   },
+   "kind": "teacher",
+   "human_labels": 8992
+  },
+  {
+   "name": "S0 student, hard labels (baseline)",
+   "acc": 0.6876623376623376,
+   "macro_f1": 0.684971904797453,
+   "acc_ci95": [
+    0.6710957792207792,
+    0.7032467532467532
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.501450034789741,
+    "p95_ms": 1.2130399234592915,
+    "model_only_p50_ms": 0.10730000212788582,
+    "throughput_qps": 37276.48719917947
+   },
+   "kind": "student"
+  },
+  {
+   "name": "S1 student, KD on labelled data only",
+   "acc": 0.7061688311688312,
+   "macro_f1": 0.7001159774191158,
+   "acc_ci95": [
+    0.6912337662337662,
+    0.7220779220779221
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.7568501168861985,
+    "p95_ms": 1.3016800163313746,
+    "model_only_p50_ms": 0.16754993703216314,
+    "throughput_qps": 43768.165000614616
+   },
+   "kind": "student"
+  },
+  {
+   "name": "S2 student, hard pseudo-labels (no soft targets)",
+   "acc": 0.7785714285714286,
+   "macro_f1": 0.7764719315639494,
+   "acc_ci95": [
+    0.7639529220779221,
+    0.7931818181818182
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.5292498972266912,
+    "p95_ms": 0.7871000445447862,
+    "model_only_p50_ms": 0.11304998770356178,
+    "throughput_qps": 43831.86457049851
+   },
+   "kind": "student"
+  },
+  {
+   "name": "S3 student, distilled (soft targets, full transfer set)",
+   "acc": 0.772077922077922,
+   "macro_f1": 0.7693860212428214,
+   "acc_ci95": [
+    0.756810064935065,
+    0.787012987012987
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.5265000509098172,
+    "p95_ms": 0.9131199680268766,
+    "model_only_p50_ms": 0.10905007366091013,
+    "throughput_qps": 35831.75851598973
+   },
+   "kind": "student"
+  },
+  {
+   "name": "S4 student, distilled (T, alpha tuned on dev)",
+   "acc": 0.7733766233766234,
+   "macro_f1": 0.7701384239467205,
+   "acc_ci95": [
+    0.7581168831168831,
+    0.787987012987013
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.6335499929264188,
+    "p95_ms": 1.3424898614175618,
+    "model_only_p50_ms": 0.1353500410914421,
+    "throughput_qps": 20712.811731838556
+   },
+   "kind": "student"
+  },
+  {
+   "name": "S5 student, distilled from INITIAL teacher (no loop)",
+   "acc": 0.7275974025974026,
+   "macro_f1": 0.7268392396535568,
+   "acc_ci95": [
+    0.7126623376623377,
+    0.7431980519480519
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.44344994239509106,
+    "p95_ms": 1.1833449243567884,
+    "model_only_p50_ms": 0.09709992446005344,
+    "throughput_qps": 27230.56600259048
+   },
+   "kind": "student"
+  }
+ ],
+ "loops": {
+  "full": [
+   {
+    "round": 1,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 840,
+    "n_verifier_pass": 829,
+    "n_selected": 829,
+    "diag_true_precision_selected": 0.9553679131483716,
+    "diag_true_precision_conf_only": 0.9488095238095238,
+    "n_audited": 100,
+    "audit_precision": 0.96,
+    "audit_wilson_lb": 0.9265707787329528,
+    "class_entropy": 0.9612291560047892,
+    "dev_acc_incumbent": 0.73,
+    "dev_f1_incumbent": 0.7320051333807108,
+    "dev_acc_proposal": 0.752,
+    "dev_f1_proposal": 0.7431639435016704,
+    "dev_gain_f1": 0.01115881012095954,
+    "p_improve": 0.97,
+    "decision": "accepted",
+    "reason": "all gates passed",
+    "gates": {
+     "G1_audit_precision": {
+      "observed": 0.96,
+      "wilson_lb": 0.9265707787329528,
+      "n_audited": 100,
+      "threshold": 0.9,
+      "pass": true
+     },
+     "G3_diversity": {
+      "entropy": 0.9612291560047892,
+      "threshold": 0.85,
+      "pass": true
+     },
+     "G2_dev_gain": {
+      "gain_f1": 0.01115881012095954,
+      "p_improve": 0.97,
+      "min_gain": 0.003,
+      "p_boot": 0.7,
+      "pass": true
+     }
+    },
+    "tau_next": 0.6,
+    "cum_human_labels": 100,
+    "cum_pseudo_labels": 729,
+    "cum_pseudo_true_precision": 0.9547325102880658,
+    "incumbent_dev_acc": 0.752,
+    "incumbent_dev_f1": 0.7431639435016704
+   },
+   {
+    "round": 2,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 1160,
+    "n_verifier_pass": 1132,
+    "n_selected": 1132,
+    "diag_true_precision_selected": 0.9434628975265018,
+    "diag_true_precision_conf_only": 0.9370689655172414,
+    "n_audited": 100,
+    "audit_precision": 0.94,
+    "audit_wilson_lb": 0.9018743995702846,
+    "class_entropy": 0.9704255336650974,
+    "dev_acc_incumbent": 0.752,
+    "dev_f1_incumbent": 0.7431639435016704,
+    "dev_acc_proposal": 0.775,
+    "dev_f1_proposal": 0.7750083106536692,
+    "dev_gain_f1": 0.03184436715199879,
+    "p_improve": 0.992,
+    "decision": "accepted",
+    "reason": "all gates passed",
+    "gates": {
+     "G1_audit_precision": {
+      "observed": 0.94,
+      "wilson_lb": 0.9018743995702846,
+      "n_audited": 100,
+      "threshold": 0.9,
+      "pass": true
+     },
+     "G3_diversity": {
+      "entropy": 0.9704255336650974,
+      "threshold": 0.85,
+      "pass": true
+     },
+     "G2_dev_gain": {
+      "gain_f1": 0.03184436715199879,
+      "p_improve": 0.992,
+      "min_gain": 0.003,
+      "p_boot": 0.7,
+      "pass": true
+     }
+    },
+    "tau_next": 0.6,
+    "cum_human_labels": 200,
+    "cum_pseudo_labels": 1761,
+    "cum_pseudo_true_precision": 0.9483248154457694,
+    "incumbent_dev_acc": 0.775,
+    "incumbent_dev_f1": 0.7750083106536692
+   },
+   {
+    "round": 3,
+    "tau": 0.6,
+    "n_candidates": 2055,
+    "n_conf_pass": 1261,
+    "n_verifier_pass": 1206,
+    "n_selected": 1206,
+    "diag_true_precision_selected": 0.9286898839137645,
+    "diag_true_precision_conf_only": 0.9151467089611419,
+    "n_audited": 100,
+    "audit_precision": 0.92,
+    "audit_wilson_lb": 0.8780646173691731,
+    "class_entropy": 0.9733025704103847,
+    "decision": "rejected",
+    "reason": "pre-training gate failed (G1_audit_precision)",
+    "gates": {
+     "G1_audit_precision": {
+      "observed": 0.92,
+      "wilson_lb": 0.8780646173691731,
+      "n_audited": 100,
+      "threshold": 0.9,
+      "pass": false
+     },
+     "G3_diversity": {
+      "entropy": 0.9733025704103847,
+      "threshold": 0.85,
+      "pass": true
+     }
+    },
+    "tau_next": 0.65,
+    "cum_human_labels": 300,
+    "cum_pseudo_labels": 1761,
+    "cum_pseudo_true_precision": 0.9483248154457694,
+    "incumbent_dev_acc": 0.775,
+    "incumbent_dev_f1": 0.7750083106536692
+   },
+   {
+    "round": 4,
+    "tau": 0.65,
+    "n_candidates": 2055,
+    "n_conf_pass": 1169,
+    "n_verifier_pass": 1129,
+    "n_selected": 1129,
+    "diag_true_precision_selected": 0.9362267493356953,
+    "diag_true_precision_conf_only": 0.9272882805816938,
+    "n_audited": 100,
+    "audit_precision": 0.9,
+    "audit_wilson_lb": 0.8548561805437497,
+    "class_entropy": 0.9666817383631205,
+    "decision": "rejected",
+    "reason": "pre-training gate failed (G1_audit_precision)",
+    "gates": {
+     "G1_audit_precision": {
+      "observed": 0.9,
+      "wilson_lb": 0.8548561805437497,
+      "n_audited": 100,
+      "threshold": 0.9,
+      "pass": false
+     },
+     "G3_diversity": {
+      "entropy": 0.9666817383631205,
+      "threshold": 0.85,
+      "pass": true
+     }
+    },
+    "tau_next": 0.7,
+    "cum_human_labels": 400,
+    "cum_pseudo_labels": 1761,
+    "cum_pseudo_true_precision": 0.9483248154457694,
+    "incumbent_dev_acc": 0.775,
+    "incumbent_dev_f1": 0.7750083106536692
+   }
+  ],
+  "verifier_only": [
+   {
+    "round": 1,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 840,
+    "n_verifier_pass": 829,
+    "n_selected": 829,
+    "diag_true_precision_selected": 0.9553679131483716,
+    "diag_true_precision_conf_only": 0.9488095238095238,
+    "class_entropy": 0.9630240853317455,
+    "dev_acc_incumbent": 0.73,
+    "dev_f1_incumbent": 0.7320051333807108,
+    "dev_acc_proposal": 0.758,
+    "dev_f1_proposal": 0.7537218008767925,
+    "dev_gain_f1": 0.0217166674960817,
+    "p_improve": 0.998,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 829,
+    "cum_pseudo_true_precision": 0.9553679131483716,
+    "incumbent_dev_acc": 0.758,
+    "incumbent_dev_f1": 0.7537218008767925
+   },
+   {
+    "round": 2,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 1145,
+    "n_verifier_pass": 1116,
+    "n_selected": 1116,
+    "diag_true_precision_selected": 0.9444444444444444,
+    "diag_true_precision_conf_only": 0.9371179039301311,
+    "class_entropy": 0.9681370256958987,
+    "dev_acc_incumbent": 0.758,
+    "dev_f1_incumbent": 0.7537218008767925,
+    "dev_acc_proposal": 0.775,
+    "dev_f1_proposal": 0.778179082342729,
+    "dev_gain_f1": 0.02445728146593651,
+    "p_improve": 0.952,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 1945,
+    "cum_pseudo_true_precision": 0.9491002570694087,
+    "incumbent_dev_acc": 0.775,
+    "incumbent_dev_f1": 0.778179082342729
+   },
+   {
+    "round": 3,
+    "tau": 0.6,
+    "n_candidates": 2055,
+    "n_conf_pass": 1269,
+    "n_verifier_pass": 1200,
+    "n_selected": 1200,
+    "diag_true_precision_selected": 0.9275,
+    "diag_true_precision_conf_only": 0.9117415287628053,
+    "class_entropy": 0.9743856896666778,
+    "dev_acc_incumbent": 0.775,
+    "dev_f1_incumbent": 0.778179082342729,
+    "dev_acc_proposal": 0.776,
+    "dev_f1_proposal": 0.765550419973305,
+    "dev_gain_f1": -0.01262866236942406,
+    "p_improve": 0.494,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 3145,
+    "cum_pseudo_true_precision": 0.9408585055643879,
+    "incumbent_dev_acc": 0.776,
+    "incumbent_dev_f1": 0.765550419973305
+   },
+   {
+    "round": 4,
+    "tau": 0.6,
+    "n_candidates": 2055,
+    "n_conf_pass": 1293,
+    "n_verifier_pass": 1215,
+    "n_selected": 1215,
+    "diag_true_precision_selected": 0.9234567901234568,
+    "diag_true_precision_conf_only": 0.9079659706109822,
+    "class_entropy": 0.970734792544035,
+    "dev_acc_incumbent": 0.776,
+    "dev_f1_incumbent": 0.765550419973305,
+    "dev_acc_proposal": 0.773,
+    "dev_f1_proposal": 0.7699442374388865,
+    "dev_gain_f1": 0.00439381746558154,
+    "p_improve": 0.338,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 4360,
+    "cum_pseudo_true_precision": 0.9360091743119267,
+    "incumbent_dev_acc": 0.773,
+    "incumbent_dev_f1": 0.7699442374388865
+   }
+  ],
+  "naive": [
+   {
+    "round": 1,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 840,
+    "n_verifier_pass": 840,
+    "n_selected": 840,
+    "diag_true_precision_selected": 0.9488095238095238,
+    "diag_true_precision_conf_only": 0.9488095238095238,
+    "class_entropy": 0.9632615921718876,
+    "dev_acc_incumbent": 0.73,
+    "dev_f1_incumbent": 0.7320051333807108,
+    "dev_acc_proposal": 0.755,
+    "dev_f1_proposal": 0.7591508569566042,
+    "dev_gain_f1": 0.0271457235758934,
+    "p_improve": 0.984,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 840,
+    "cum_pseudo_true_precision": 0.9488095238095238,
+    "incumbent_dev_acc": 0.755,
+    "incumbent_dev_f1": 0.7591508569566042
+   },
+   {
+    "round": 2,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 1123,
+    "n_verifier_pass": 1123,
+    "n_selected": 1123,
+    "diag_true_precision_selected": 0.9403383793410508,
+    "diag_true_precision_conf_only": 0.9403383793410508,
+    "class_entropy": 0.9714744413842149,
+    "dev_acc_incumbent": 0.755,
+    "dev_f1_incumbent": 0.7591508569566042,
+    "dev_acc_proposal": 0.766,
+    "dev_f1_proposal": 0.7639665409268408,
+    "dev_gain_f1": 0.004815683970236573,
+    "p_improve": 0.886,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 1963,
+    "cum_pseudo_true_precision": 0.9439633214467652,
+    "incumbent_dev_acc": 0.766,
+    "incumbent_dev_f1": 0.7639665409268408
+   },
+   {
+    "round": 3,
+    "tau": 0.6,
+    "n_candidates": 2055,
+    "n_conf_pass": 1235,
+    "n_verifier_pass": 1235,
+    "n_selected": 1235,
+    "diag_true_precision_selected": 0.9093117408906882,
+    "diag_true_precision_conf_only": 0.9093117408906882,
+    "class_entropy": 0.9757714978467258,
+    "dev_acc_incumbent": 0.766,
+    "dev_f1_incumbent": 0.7639665409268408,
+    "dev_acc_proposal": 0.779,
+    "dev_f1_proposal": 0.7757656416417655,
+    "dev_gain_f1": 0.011799100714924737,
+    "p_improve": 0.966,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 3198,
+    "cum_pseudo_true_precision": 0.9305816135084428,
+    "incumbent_dev_acc": 0.779,
+    "incumbent_dev_f1": 0.7757656416417655
+   },
+   {
+    "round": 4,
+    "tau": 0.6,
+    "n_candidates": 2055,
+    "n_conf_pass": 1324,
+    "n_verifier_pass": 1324,
+    "n_selected": 1324,
+    "diag_true_precision_selected": 0.9070996978851964,
+    "diag_true_precision_conf_only": 0.9070996978851964,
+    "class_entropy": 0.9741798474249593,
+    "dev_acc_incumbent": 0.779,
+    "dev_f1_incumbent": 0.7757656416417655,
+    "dev_acc_proposal": 0.79,
+    "dev_f1_proposal": 0.787293327425298,
+    "dev_gain_f1": 0.01152768578353247,
+    "p_improve": 0.932,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 4522,
+    "cum_pseudo_true_precision": 0.9237063246351173,
+    "incumbent_dev_acc": 0.79,
+    "incumbent_dev_f1": 0.787293327425298
+   }
+  ]
+ },
+ "sweep": [
+  {
+   "T": 1.0,
+   "alpha": 0.0,
+   "dev_acc": 0.783,
+   "dev_f1": 0.776069487493067
+  },
+  {
+   "T": 1.0,
+   "alpha": 0.5,
+   "dev_acc": 0.784,
+   "dev_f1": 0.777636140434901
+  },
+  {
+   "T": 2.0,
+   "alpha": 0.0,
+   "dev_acc": 0.778,
+   "dev_f1": 0.7696834663092257
+  },
+  {
+   "T": 2.0,
+   "alpha": 0.5,
+   "dev_acc": 0.781,
+   "dev_f1": 0.7736739452966117
+  },
+  {
+   "T": 4.0,
+   "alpha": 0.0,
+   "dev_acc": 0.776,
+   "dev_f1": 0.7683540559281274
+  },
+  {
+   "T": 4.0,
+   "alpha": 0.5,
+   "dev_acc": 0.776,
+   "dev_f1": 0.764580061749074
+  },
+  {
+   "T": 8.0,
+   "alpha": 0.0,
+   "dev_acc": 0.776,
+   "dev_f1": 0.7698471047728501
+  },
+  {
+   "T": 8.0,
+   "alpha": 0.5,
+   "dev_acc": 0.774,
+   "dev_f1": 0.7640138578245974
+  }
+ ],
+ "sweep_best": {
+  "T": 1.0,
+  "alpha": 0.5,
+  "dev_acc": 0.784,
+  "dev_f1": 0.777636140434901
+ },
+ "human_labels_full": 400,
+ "failure": {
+  "per_class_recall": {
+   "teacher0": [
+    0.825,
+    0.9,
+    0.95,
+    0.925,
+    0.725,
+    0.875,
+    0.725,
+    0.8,
+    0.45,
+    0.8,
+    0.95,
+    0.55,
+    0.625,
+    0.625,
+    0.85,
+    0.625,
+    0.65,
+    0.3,
+    0.475,
+    0.825,
+    0.825,
+    0.675,
+    0.725,
+    0.6,
+    0.95,
+    0.75,
+    0.575,
+    0.475,
+    0.725,
+    0.575,
+    0.75,
+    1.0,
+    0.7,
+    0.975,
+    0.7,
+    0.675,
+    0.65,
+    0.725,
+    0.8,
+    0.85,
+    0.65,
+    0.95,
+    0.725,
+    0.875,
+    0.575,
+    1.0,
+    0.675,
+    0.775,
+    0.6,
+    0.65,
+    0.8,
+    0.825,
+    0.7,
+    0.775,
+    0.625,
+    1.0,
+    0.75,
+    0.675,
+    0.7,
+    0.625,
+    0.925,
+    0.75,
+    0.625,
+    0.875,
+    0.75,
+    0.75,
+    0.6,
+    0.575,
+    0.575,
+    0.775,
+    0.9,
+    1.0,
+    0.85,
+    0.875,
+    0.325,
+    0.625,
+    0.65
+   ],
+   "teacher_full": [
+    0.875,
+    0.9,
+    0.975,
+    1.0,
+    0.775,
+    0.975,
+    0.85,
+    0.975,
+    0.6,
+    0.925,
+    0.95,
+    0.625,
+    0.775,
+    0.675,
+    0.95,
+    0.775,
+    0.9,
+    0.625,
+    0.575,
+    0.875,
+    0.925,
+    0.8,
+    0.775,
+    0.875,
+    0.95,
+    0.825,
+    0.7,
+    0.625,
+    0.75,
+    0.6,
+    0.75,
+    1.0,
+    0.85,
+    1.0,
+    0.725,
+    0.7,
+    0.65,
+    0.775,
+    0.85,
+    0.95,
+    0.525,
+    0.95,
+    0.775,
+    0.975,
+    0.7,
+    1.0,
+    0.7,
+    0.875,
+    0.575,
+    0.6,
+    0.8,
+    0.85,
+    0.625,
+    0.875,
+    0.5,
+    0.925,
+    0.8,
+    0.85,
+    0.825,
+    0.75,
+    0.95,
+    0.8,
+    0.5,
+    0.9,
+    0.725,
+    0.8,
+    0.4,
+    0.5,
+    0.55,
+    0.75,
+    0.975,
+    1.0,
+    0.825,
+    0.9,
+    0.125,
+    0.775,
+    0.65
+   ],
+   "student_s4": [
+    0.925,
+    0.9,
+    1.0,
+    1.0,
+    0.8,
+    0.9,
+    0.85,
+    0.85,
+    0.45,
+    0.925,
+    0.9,
+    0.55,
+    0.85,
+    0.675,
+    0.95,
+    0.75,
+    0.825,
+    0.6,
+    0.5,
+    0.8,
+    0.875,
+    0.75,
+    0.775,
+    0.85,
+    0.875,
+    0.85,
+    0.725,
+    0.525,
+    0.75,
+    0.625,
+    0.825,
+    1.0,
+    0.875,
+    0.975,
+    0.65,
+    0.775,
+    0.675,
+    0.775,
+    0.85,
+    0.875,
+    0.55,
+    0.95,
+    0.725,
+    0.975,
+    0.725,
+    1.0,
+    0.725,
+    0.85,
+    0.725,
+    0.625,
+    0.775,
+    0.85,
+    0.675,
+    0.825,
+    0.5,
+    0.975,
+    0.75,
+    0.9,
+    0.8,
+    0.775,
+    0.925,
+    0.8,
+    0.475,
+    0.9,
+    0.7,
+    0.825,
+    0.4,
+    0.55,
+    0.5,
+    0.7,
+    1.0,
+    1.0,
+    0.75,
+    0.9,
+    0.15,
+    0.775,
+    0.65
+   ]
+  },
+  "top_confusions_student": [
+   {
+    "true": "why_verify_identity",
+    "pred": "verify_my_identity",
+    "count": 27
+   },
+   {
+    "true": "supported_cards_and_currencies",
+    "pred": "fiat_currency_support",
+    "count": 17
+   },
+   {
+    "true": "transfer_timing",
+    "pred": "balance_not_updated_after_bank_transfer",
+    "count": 15
+   },
+   {
+    "true": "transfer_not_received_by_recipient",
+    "pred": "balance_not_updated_after_bank_transfer",
+    "count": 13
+   },
+   {
+    "true": "card_payment_wrong_exchange_rate",
+    "pred": "wrong_exchange_rate_for_cash_withdrawal",
+    "count": 11
+   },
+   {
+    "true": "exchange_via_app",
+    "pred": "exchange_charge",
+    "count": 10
+   },
+   {
+    "true": "pending_transfer",
+    "pred": "balance_not_updated_after_bank_transfer",
+    "count": 10
+   },
+   {
+    "true": "unable_to_verify_identity",
+    "pred": "verify_my_identity",
+    "count": 9
+   },
+   {
+    "true": "declined_cash_withdrawal",
+    "pred": "wrong_amount_of_cash_received",
+    "count": 7
+   },
+   {
+    "true": "request_refund",
+    "pred": "cancel_transfer",
+    "count": 7
+   },
+   {
+    "true": "change_pin",
+    "pred": "get_physical_card",
+    "count": 7
+   },
+   {
+    "true": "virtual_card_not_working",
+    "pred": "getting_virtual_card",
+    "count": 7
+   }
+  ],
+  "examples": [
+   {
+    "text": "How do I locate my card?",
+    "true": "card_arrival",
+    "student": "card_linking",
+    "teacher": "order_physical_card"
+   },
+   {
+    "text": "When will I get my card?",
+    "true": "card_arrival",
+    "student": "card_delivery_estimate",
+    "teacher": "card_delivery_estimate"
+   },
+   {
+    "text": "How do I track my card?",
+    "true": "card_arrival",
+    "student": "lost_or_stolen_card",
+    "teacher": "card_arrival"
+   },
+   {
+    "text": "How long does a card delivery take?",
+    "true": "card_arrival",
+    "student": "card_delivery_estimate",
+    "teacher": "card_delivery_estimate"
+   },
+   {
+    "text": "Why hasn't my card been delivered?",
+    "true": "card_arrival",
+    "student": "card_delivery_estimate",
+    "teacher": "card_delivery_estimate"
+   },
+   {
+    "text": "I did not get my card yet, is it lost?",
+    "true": "card_arrival",
+    "student": "lost_or_stolen_card",
+    "teacher": "lost_or_stolen_card"
+   },
+   {
+    "text": "Why won't my card show up on the app?",
+    "true": "card_linking",
+    "student": "card_not_working",
+    "teacher": "card_not_working"
+   },
+   {
+    "text": "The app doesn't show the card I received.",
+    "true": "card_linking",
+    "student": "card_arrival",
+    "teacher": "balance_not_updated_after_cheque_or_cash_deposit"
+   },
+   {
+    "text": "Is it a good time to exchange?",
+    "true": "exchange_rate",
+    "student": "exchange_charge",
+    "teacher": "exchange_rate"
+   },
+   {
+    "text": "I purchased something in a foreign currency but the rate applied is wrong",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "wrong_exchange_rate_for_cash_withdrawal"
+   },
+   {
+    "text": "I made a currency exchange and think I was charged more than I should of been.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "exchange_charge",
+    "teacher": "exchange_charge"
+   },
+   {
+    "text": "the card payment exchange rate is wrong",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "card_payment_wrong_exchange_rate"
+   },
+   {
+    "text": "The exchange rate was wrong when I bought something outside the country.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "wrong_exchange_rate_for_cash_withdrawal"
+   },
+   {
+    "text": "This rate is too low. Are you sure your using the right exchange rate.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "exchange_rate",
+    "teacher": "exchange_rate"
+   },
+   {
+    "text": "The rate applied to my foreign purchase was incorrect",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "wrong_exchange_rate_for_cash_withdrawal"
+   },
+   {
+    "text": "I bought something in a foreign currency but the rate applied is wrong!",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "wrong_exchange_rate_for_cash_withdrawal"
+   },
+   {
+    "text": "The rate of exchange for my card payment is incorrect",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "card_payment_wrong_exchange_rate"
+   },
+   {
+    "text": "The exchange rate for my transaction last Saturday seems to have been wrong I got charged extra.  Please fix.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "wrong_exchange_rate_for_cash_withdrawal"
+   },
+   {
+    "text": "Why is your exchange rate for my card payment wrong",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "exchange_rate",
+    "teacher": "card_payment_wrong_exchange_rate"
+   },
+   {
+    "text": "Why am I being charged more ?",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "card_payment_fee_charged",
+    "teacher": "card_payment_fee_charged"
+   },
+   {
+    "text": "They charged me wrong for a currency exchange on a purchase.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "exchange_charge",
+    "teacher": "exchange_charge"
+   },
+   {
+    "text": "I believe my card payment exchange rate is incorrect.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "wrong_exchange_rate_for_cash_withdrawal"
+   },
+   {
+    "text": "The exchange rate seems off on this transaction",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "exchange_rate",
+    "teacher": "exchange_rate"
+   },
+   {
+    "text": "Hi, I don't think your exchange rate is right. I need you to check the official interbank exchange please.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "exchange_rate",
+    "teacher": "exchange_rate"
+   },
+   {
+    "text": "the conversion value for my card payments is incorrect.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "reverted_card_payment?",
+    "teacher": "wrong_exchange_rate_for_cash_withdrawal"
+   }
+  ],
+  "student_teacher_agreement": 0.8918831168831168
+ },
+ "runtime_sec": 1115.2194006443024
+}

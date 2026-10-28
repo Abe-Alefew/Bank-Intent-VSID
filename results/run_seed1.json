@@ -1,0 +1,1295 @@
+{
+ "seed": 1,
+ "config": {
+  "dataset": "banking77",
+  "data_dir": "C:\\Users\\Abraham A. Alefew\\Desktop\\Icog\\trainings\\RSL and Knowledge DIstillation\\bankintent-vsid\\bankintent-vsid\\data",
+  "results_dir": "C:\\Users\\Abraham A. Alefew\\Desktop\\Icog\\trainings\\RSL and Knowledge DIstillation\\bankintent-vsid\\bankintent-vsid\\results",
+  "seeds": [
+   0,
+   1,
+   2
+  ],
+  "n_dev": 1000,
+  "seed_per_class": 10,
+  "teacher_word_features": 5000,
+  "teacher_char_features": 15000,
+  "student_word_features": 3000,
+  "verifier_char_features": 30000,
+  "teacher_hidden": 256,
+  "student_hidden": 64,
+  "dropout": 0.3,
+  "label_smoothing": 0.05,
+  "epochs_teacher": 20,
+  "epochs_student": 25,
+  "lr": 0.002,
+  "weight_decay": 0.0001,
+  "batch_size": 64,
+  "torch_threads": 1,
+  "rounds": 4,
+  "audit_per_round": 100,
+  "tau0": 0.6,
+  "tau_min": 0.3,
+  "tau_max": 0.9,
+  "tau_step": 0.05,
+  "verifier_topk": 1,
+  "class_cap_factor": 1.5,
+  "p_min": 0.9,
+  "wilson_z": 1.2816,
+  "min_entropy": 0.85,
+  "min_gain": 0.003,
+  "p_boot": 0.7,
+  "n_boot": 500,
+  "patience": 2,
+  "kd_alpha": 0.5,
+  "kd_temperature": 4.0,
+  "sweep_temperatures": [
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "sweep_alphas": [
+   0.0,
+   0.5
+  ],
+  "latency_queries": 300,
+  "latency_warmup": 30
+ },
+ "split_info": {
+  "n_original_train": 10003,
+  "n_exact_duplicates_removed": 4,
+  "n_train_rows_also_in_test_removed": 7,
+  "sizes": {
+   "seed": 770,
+   "pool": 8222,
+   "dev": 1000,
+   "test": 3080
+  },
+  "pairwise_text_overlap": {
+   "seed&pool": 0,
+   "seed&dev": 0,
+   "seed&test": 0,
+   "pool&dev": 0,
+   "pool&test": 0,
+   "dev&test": 0
+  },
+  "leakage_free": true,
+  "seed_per_class": 10
+ },
+ "classes": [
+  "Refund_not_showing_up",
+  "activate_my_card",
+  "age_limit",
+  "apple_pay_or_google_pay",
+  "atm_support",
+  "automatic_top_up",
+  "balance_not_updated_after_bank_transfer",
+  "balance_not_updated_after_cheque_or_cash_deposit",
+  "beneficiary_not_allowed",
+  "cancel_transfer",
+  "card_about_to_expire",
+  "card_acceptance",
+  "card_arrival",
+  "card_delivery_estimate",
+  "card_linking",
+  "card_not_working",
+  "card_payment_fee_charged",
+  "card_payment_not_recognised",
+  "card_payment_wrong_exchange_rate",
+  "card_swallowed",
+  "cash_withdrawal_charge",
+  "cash_withdrawal_not_recognised",
+  "change_pin",
+  "compromised_card",
+  "contactless_not_working",
+  "country_support",
+  "declined_card_payment",
+  "declined_cash_withdrawal",
+  "declined_transfer",
+  "direct_debit_payment_not_recognised",
+  "disposable_card_limits",
+  "edit_personal_details",
+  "exchange_charge",
+  "exchange_rate",
+  "exchange_via_app",
+  "extra_charge_on_statement",
+  "failed_transfer",
+  "fiat_currency_support",
+  "get_disposable_virtual_card",
+  "get_physical_card",
+  "getting_spare_card",
+  "getting_virtual_card",
+  "lost_or_stolen_card",
+  "lost_or_stolen_phone",
+  "order_physical_card",
+  "passcode_forgotten",
+  "pending_card_payment",
+  "pending_cash_withdrawal",
+  "pending_top_up",
+  "pending_transfer",
+  "pin_blocked",
+  "receiving_money",
+  "request_refund",
+  "reverted_card_payment?",
+  "supported_cards_and_currencies",
+  "terminate_account",
+  "top_up_by_bank_transfer_charge",
+  "top_up_by_card_charge",
+  "top_up_by_cash_or_cheque",
+  "top_up_failed",
+  "top_up_limits",
+  "top_up_reverted",
+  "topping_up_by_card",
+  "transaction_charged_twice",
+  "transfer_fee_charged",
+  "transfer_into_account",
+  "transfer_not_received_by_recipient",
+  "transfer_timing",
+  "unable_to_verify_identity",
+  "verify_my_identity",
+  "verify_source_of_funds",
+  "verify_top_up",
+  "virtual_card_not_working",
+  "visa_or_mastercard",
+  "why_verify_identity",
+  "wrong_amount_of_cash_received",
+  "wrong_exchange_rate_for_cash_withdrawal"
+ ],
+ "systems": [
+  {
+   "name": "T0 teacher, seed labels only (start of loop)",
+   "acc": 0.7386363636363636,
+   "macro_f1": 0.7385512515328814,
+   "acc_ci95": [
+    0.7227272727272728,
+    0.7535714285714286
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 2.500350121408701,
+    "p95_ms": 2.9845550190657377,
+    "model_only_p50_ms": 0.3889501094818115,
+    "throughput_qps": 4883.492462481273
+   },
+   "kind": "teacher",
+   "human_labels": 770
+  },
+  {
+   "name": "T1 teacher, label-budget-matched supervised",
+   "acc": 0.788961038961039,
+   "macro_f1": 0.7888861913968582,
+   "acc_ci95": [
+    0.7746753246753246,
+    0.8019561688311688
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 1.0925499955192208,
+    "p95_ms": 2.3528598714619875,
+    "model_only_p50_ms": 0.18005003221333027,
+    "throughput_qps": 4681.887694228846
+   },
+   "kind": "teacher",
+   "human_labels": 1170
+  },
+  {
+   "name": "T2 teacher, naive self-training (no verifier, no gates)",
+   "acc": 0.7805194805194805,
+   "macro_f1": 0.7773669970590635,
+   "acc_ci95": [
+    0.766875,
+    0.7944805194805195
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 1.1348999105393887,
+    "p95_ms": 2.475205098744482,
+    "model_only_p50_ms": 0.18954998813569546,
+    "throughput_qps": 8605.475879747984
+   },
+   "kind": "teacher",
+   "human_labels": 770
+  },
+  {
+   "name": "T3 teacher, verifier only (no audit, no gates)",
+   "acc": 0.7792207792207793,
+   "macro_f1": 0.7755519364286918,
+   "acc_ci95": [
+    0.7646103896103896,
+    0.7925405844155844
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 1.6768501373007894,
+    "p95_ms": 2.795214846264572,
+    "model_only_p50_ms": 0.2720999764278531,
+    "throughput_qps": 5975.3888632765975
+   },
+   "kind": "teacher",
+   "human_labels": 770
+  },
+  {
+   "name": "T4 teacher, FULL verified loop",
+   "acc": 0.7905844155844156,
+   "macro_f1": 0.788855698150309,
+   "acc_ci95": [
+    0.7762987012987013,
+    0.8045454545454546
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 1.2702499516308308,
+    "p95_ms": 2.966914896387607,
+    "model_only_p50_ms": 0.2016499638557434,
+    "throughput_qps": 6164.663950150301
+   },
+   "kind": "teacher",
+   "human_labels": 1170
+  },
+  {
+   "name": "T5 teacher, oracle (all pool labels; upper bound)",
+   "acc": 0.9103896103896104,
+   "macro_f1": 0.9107362624954679,
+   "acc_ci95": [
+    0.9003246753246753,
+    0.9201298701298701
+   ],
+   "params": 5163085,
+   "size_mb": 20.65234,
+   "latency": {
+    "p50_ms": 1.638250076211989,
+    "p95_ms": 2.849905041512102,
+    "model_only_p50_ms": 0.2660999307408929,
+    "throughput_qps": 8321.631034664559
+   },
+   "kind": "teacher",
+   "human_labels": 8992
+  },
+  {
+   "name": "S0 student, hard labels (baseline)",
+   "acc": 0.6987012987012987,
+   "macro_f1": 0.6957626212248613,
+   "acc_ci95": [
+    0.682784090909091,
+    0.7146103896103896
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.5495500518009067,
+    "p95_ms": 1.2654850841499865,
+    "model_only_p50_ms": 0.11685001663863659,
+    "throughput_qps": 56437.388770294914
+   },
+   "kind": "student"
+  },
+  {
+   "name": "S1 student, KD on labelled data only",
+   "acc": 0.7162337662337662,
+   "macro_f1": 0.7098187299302452,
+   "acc_ci95": [
+    0.7003246753246753,
+    0.7318181818181818
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.6279500667005777,
+    "p95_ms": 1.3720799703150988,
+    "model_only_p50_ms": 0.134600093588233,
+    "throughput_qps": 49362.721558091005
+   },
+   "kind": "student"
+  },
+  {
+   "name": "S2 student, hard pseudo-labels (no soft targets)",
+   "acc": 0.7753246753246753,
+   "macro_f1": 0.7731181442064242,
+   "acc_ci95": [
+    0.7610389610389611,
+    0.7896103896103897
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.4911000141873956,
+    "p95_ms": 0.8709148387424663,
+    "model_only_p50_ms": 0.10164990089833736,
+    "throughput_qps": 50983.8280625562
+   },
+   "kind": "student"
+  },
+  {
+   "name": "S3 student, distilled (soft targets, full transfer set)",
+   "acc": 0.7691558441558441,
+   "macro_f1": 0.7671904652623796,
+   "acc_ci95": [
+    0.7542126623376624,
+    0.7834415584415585
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.5564999300986528,
+    "p95_ms": 1.2931451667100191,
+    "model_only_p50_ms": 0.1163500128313899,
+    "throughput_qps": 59392.61619444229
+   },
+   "kind": "student"
+  },
+  {
+   "name": "S4 student, distilled (T, alpha tuned on dev)",
+   "acc": 0.7808441558441559,
+   "macro_f1": 0.7787162058557735,
+   "acc_ci95": [
+    0.7665584415584416,
+    0.7944886363636363
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.6102999905124307,
+    "p95_ms": 1.3088199659250677,
+    "model_only_p50_ms": 0.132350018247962,
+    "throughput_qps": 21155.10149879471
+   },
+   "kind": "student"
+  },
+  {
+   "name": "S5 student, distilled from INITIAL teacher (no loop)",
+   "acc": 0.7233766233766233,
+   "macro_f1": 0.7235000543107251,
+   "acc_ci95": [
+    0.7064935064935065,
+    0.7379951298701298
+   ],
+   "params": 197069,
+   "size_mb": 0.788276,
+   "latency": {
+    "p50_ms": 0.6016000406816602,
+    "p95_ms": 1.3285148772411048,
+    "model_only_p50_ms": 0.12879993300884962,
+    "throughput_qps": 59616.68356878014
+   },
+   "kind": "student"
+  }
+ ],
+ "loops": {
+  "full": [
+   {
+    "round": 1,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 861,
+    "n_verifier_pass": 852,
+    "n_selected": 852,
+    "diag_true_precision_selected": 0.9413145539906104,
+    "diag_true_precision_conf_only": 0.9361207897793263,
+    "n_audited": 100,
+    "audit_precision": 0.95,
+    "audit_wilson_lb": 0.9140845494599583,
+    "class_entropy": 0.9599398003632942,
+    "dev_acc_incumbent": 0.691,
+    "dev_f1_incumbent": 0.6827879017826893,
+    "dev_acc_proposal": 0.716,
+    "dev_f1_proposal": 0.7012718343173908,
+    "dev_gain_f1": 0.018483932534701486,
+    "p_improve": 0.98,
+    "decision": "accepted",
+    "reason": "all gates passed",
+    "gates": {
+     "G1_audit_precision": {
+      "observed": 0.95,
+      "wilson_lb": 0.9140845494599583,
+      "n_audited": 100,
+      "threshold": 0.9,
+      "pass": true
+     },
+     "G3_diversity": {
+      "entropy": 0.9599398003632942,
+      "threshold": 0.85,
+      "pass": true
+     },
+     "G2_dev_gain": {
+      "gain_f1": 0.018483932534701486,
+      "p_improve": 0.98,
+      "min_gain": 0.003,
+      "p_boot": 0.7,
+      "pass": true
+     }
+    },
+    "tau_next": 0.6,
+    "cum_human_labels": 100,
+    "cum_pseudo_labels": 752,
+    "cum_pseudo_true_precision": 0.9401595744680851,
+    "incumbent_dev_acc": 0.716,
+    "incumbent_dev_f1": 0.7012718343173908
+   },
+   {
+    "round": 2,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 1115,
+    "n_verifier_pass": 1093,
+    "n_selected": 1093,
+    "diag_true_precision_selected": 0.9414455626715462,
+    "diag_true_precision_conf_only": 0.9327354260089686,
+    "n_audited": 100,
+    "audit_precision": 0.96,
+    "audit_wilson_lb": 0.9265707787329528,
+    "class_entropy": 0.972847507740853,
+    "dev_acc_incumbent": 0.716,
+    "dev_f1_incumbent": 0.7012718343173908,
+    "dev_acc_proposal": 0.732,
+    "dev_f1_proposal": 0.7175675890559289,
+    "dev_gain_f1": 0.01629575473853806,
+    "p_improve": 0.944,
+    "decision": "accepted",
+    "reason": "all gates passed",
+    "gates": {
+     "G1_audit_precision": {
+      "observed": 0.96,
+      "wilson_lb": 0.9265707787329528,
+      "n_audited": 100,
+      "threshold": 0.9,
+      "pass": true
+     },
+     "G3_diversity": {
+      "entropy": 0.972847507740853,
+      "threshold": 0.85,
+      "pass": true
+     },
+     "G2_dev_gain": {
+      "gain_f1": 0.01629575473853806,
+      "p_improve": 0.944,
+      "min_gain": 0.003,
+      "p_boot": 0.7,
+      "pass": true
+     }
+    },
+    "tau_next": 0.6,
+    "cum_human_labels": 200,
+    "cum_pseudo_labels": 1745,
+    "cum_pseudo_true_precision": 0.9398280802292264,
+    "incumbent_dev_acc": 0.732,
+    "incumbent_dev_f1": 0.7175675890559289
+   },
+   {
+    "round": 3,
+    "tau": 0.6,
+    "n_candidates": 2055,
+    "n_conf_pass": 1243,
+    "n_verifier_pass": 1196,
+    "n_selected": 1196,
+    "diag_true_precision_selected": 0.9414715719063546,
+    "diag_true_precision_conf_only": 0.9251810136765889,
+    "n_audited": 100,
+    "audit_precision": 0.92,
+    "audit_wilson_lb": 0.8780646173691731,
+    "class_entropy": 0.9760978547845115,
+    "decision": "rejected",
+    "reason": "pre-training gate failed (G1_audit_precision)",
+    "gates": {
+     "G1_audit_precision": {
+      "observed": 0.92,
+      "wilson_lb": 0.8780646173691731,
+      "n_audited": 100,
+      "threshold": 0.9,
+      "pass": false
+     },
+     "G3_diversity": {
+      "entropy": 0.9760978547845115,
+      "threshold": 0.85,
+      "pass": true
+     }
+    },
+    "tau_next": 0.65,
+    "cum_human_labels": 300,
+    "cum_pseudo_labels": 1745,
+    "cum_pseudo_true_precision": 0.9398280802292264,
+    "incumbent_dev_acc": 0.732,
+    "incumbent_dev_f1": 0.7175675890559289
+   },
+   {
+    "round": 4,
+    "tau": 0.65,
+    "n_candidates": 2055,
+    "n_conf_pass": 1219,
+    "n_verifier_pass": 1171,
+    "n_selected": 1171,
+    "diag_true_precision_selected": 0.9573014517506405,
+    "diag_true_precision_conf_only": 0.9433962264150944,
+    "n_audited": 100,
+    "audit_precision": 0.97,
+    "audit_wilson_lb": 0.9394283359006139,
+    "class_entropy": 0.9761990543784392,
+    "dev_acc_incumbent": 0.732,
+    "dev_f1_incumbent": 0.7175675890559289,
+    "dev_acc_proposal": 0.75,
+    "dev_f1_proposal": 0.7342747832097992,
+    "dev_gain_f1": 0.01670719415387034,
+    "p_improve": 0.982,
+    "decision": "accepted",
+    "reason": "all gates passed",
+    "gates": {
+     "G1_audit_precision": {
+      "observed": 0.97,
+      "wilson_lb": 0.9394283359006139,
+      "n_audited": 100,
+      "threshold": 0.9,
+      "pass": true
+     },
+     "G3_diversity": {
+      "entropy": 0.9761990543784392,
+      "threshold": 0.85,
+      "pass": true
+     },
+     "G2_dev_gain": {
+      "gain_f1": 0.01670719415387034,
+      "p_improve": 0.982,
+      "min_gain": 0.003,
+      "p_boot": 0.7,
+      "pass": true
+     }
+    },
+    "tau_next": 0.65,
+    "cum_human_labels": 400,
+    "cum_pseudo_labels": 2816,
+    "cum_pseudo_true_precision": 0.9460227272727273,
+    "incumbent_dev_acc": 0.75,
+    "incumbent_dev_f1": 0.7342747832097992
+   }
+  ],
+  "verifier_only": [
+   {
+    "round": 1,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 861,
+    "n_verifier_pass": 852,
+    "n_selected": 852,
+    "diag_true_precision_selected": 0.9413145539906104,
+    "diag_true_precision_conf_only": 0.9361207897793263,
+    "class_entropy": 0.9624756792715091,
+    "dev_acc_incumbent": 0.691,
+    "dev_f1_incumbent": 0.6827879017826893,
+    "dev_acc_proposal": 0.704,
+    "dev_f1_proposal": 0.6862938899817815,
+    "dev_gain_f1": 0.0035059881990922026,
+    "p_improve": 0.88,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 852,
+    "cum_pseudo_true_precision": 0.9413145539906104,
+    "incumbent_dev_acc": 0.704,
+    "incumbent_dev_f1": 0.6862938899817815
+   },
+   {
+    "round": 2,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 1090,
+    "n_verifier_pass": 1075,
+    "n_selected": 1075,
+    "diag_true_precision_selected": 0.9330232558139535,
+    "diag_true_precision_conf_only": 0.9275229357798165,
+    "class_entropy": 0.969884881684444,
+    "dev_acc_incumbent": 0.704,
+    "dev_f1_incumbent": 0.6862938899817815,
+    "dev_acc_proposal": 0.727,
+    "dev_f1_proposal": 0.710970974674933,
+    "dev_gain_f1": 0.02467708469315144,
+    "p_improve": 0.992,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 1927,
+    "cum_pseudo_true_precision": 0.9366891541255838,
+    "incumbent_dev_acc": 0.727,
+    "incumbent_dev_f1": 0.710970974674933
+   },
+   {
+    "round": 3,
+    "tau": 0.6,
+    "n_candidates": 2055,
+    "n_conf_pass": 1256,
+    "n_verifier_pass": 1206,
+    "n_selected": 1206,
+    "diag_true_precision_selected": 0.9270315091210614,
+    "diag_true_precision_conf_only": 0.9164012738853503,
+    "class_entropy": 0.972603885020497,
+    "dev_acc_incumbent": 0.727,
+    "dev_f1_incumbent": 0.710970974674933,
+    "dev_acc_proposal": 0.736,
+    "dev_f1_proposal": 0.7167303331046182,
+    "dev_gain_f1": 0.005759358429685224,
+    "p_improve": 0.836,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 3133,
+    "cum_pseudo_true_precision": 0.9329715927226301,
+    "incumbent_dev_acc": 0.736,
+    "incumbent_dev_f1": 0.7167303331046182
+   },
+   {
+    "round": 4,
+    "tau": 0.6,
+    "n_candidates": 2055,
+    "n_conf_pass": 1342,
+    "n_verifier_pass": 1267,
+    "n_selected": 1267,
+    "diag_true_precision_selected": 0.941594317284925,
+    "diag_true_precision_conf_only": 0.9262295081967213,
+    "class_entropy": 0.9775755275438276,
+    "dev_acc_incumbent": 0.736,
+    "dev_f1_incumbent": 0.7167303331046182,
+    "dev_acc_proposal": 0.743,
+    "dev_f1_proposal": 0.725096863223338,
+    "dev_gain_f1": 0.008366530118719795,
+    "p_improve": 0.782,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 4400,
+    "cum_pseudo_true_precision": 0.9354545454545454,
+    "incumbent_dev_acc": 0.743,
+    "incumbent_dev_f1": 0.725096863223338
+   }
+  ],
+  "naive": [
+   {
+    "round": 1,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 861,
+    "n_verifier_pass": 861,
+    "n_selected": 861,
+    "diag_true_precision_selected": 0.9361207897793263,
+    "diag_true_precision_conf_only": 0.9361207897793263,
+    "class_entropy": 0.9619874412844168,
+    "dev_acc_incumbent": 0.691,
+    "dev_f1_incumbent": 0.6827879017826893,
+    "dev_acc_proposal": 0.708,
+    "dev_f1_proposal": 0.6986380127112225,
+    "dev_gain_f1": 0.015850110928533168,
+    "p_improve": 0.926,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 861,
+    "cum_pseudo_true_precision": 0.9361207897793263,
+    "incumbent_dev_acc": 0.708,
+    "incumbent_dev_f1": 0.6986380127112225
+   },
+   {
+    "round": 2,
+    "tau": 0.6,
+    "n_candidates": 2056,
+    "n_conf_pass": 1117,
+    "n_verifier_pass": 1117,
+    "n_selected": 1117,
+    "diag_true_precision_selected": 0.9319606087735004,
+    "diag_true_precision_conf_only": 0.9319606087735004,
+    "class_entropy": 0.9714878294612957,
+    "dev_acc_incumbent": 0.708,
+    "dev_f1_incumbent": 0.6986380127112225,
+    "dev_acc_proposal": 0.731,
+    "dev_f1_proposal": 0.7161525613599261,
+    "dev_gain_f1": 0.01751454864870361,
+    "p_improve": 0.996,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 1978,
+    "cum_pseudo_true_precision": 0.9337714863498483,
+    "incumbent_dev_acc": 0.731,
+    "incumbent_dev_f1": 0.7161525613599261
+   },
+   {
+    "round": 3,
+    "tau": 0.6,
+    "n_candidates": 2055,
+    "n_conf_pass": 1246,
+    "n_verifier_pass": 1246,
+    "n_selected": 1246,
+    "diag_true_precision_selected": 0.9101123595505618,
+    "diag_true_precision_conf_only": 0.9101123595505618,
+    "class_entropy": 0.9751579050648599,
+    "dev_acc_incumbent": 0.731,
+    "dev_f1_incumbent": 0.7161525613599261,
+    "dev_acc_proposal": 0.73,
+    "dev_f1_proposal": 0.7046174750661275,
+    "dev_gain_f1": -0.011535086293798624,
+    "p_improve": 0.466,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 3224,
+    "cum_pseudo_true_precision": 0.9246277915632755,
+    "incumbent_dev_acc": 0.73,
+    "incumbent_dev_f1": 0.7046174750661275
+   },
+   {
+    "round": 4,
+    "tau": 0.6,
+    "n_candidates": 2055,
+    "n_conf_pass": 1338,
+    "n_verifier_pass": 1338,
+    "n_selected": 1338,
+    "diag_true_precision_selected": 0.9192825112107623,
+    "diag_true_precision_conf_only": 0.9192825112107623,
+    "class_entropy": 0.9764362114696531,
+    "dev_acc_incumbent": 0.73,
+    "dev_f1_incumbent": 0.7046174750661275,
+    "dev_acc_proposal": 0.748,
+    "dev_f1_proposal": 0.7295940675389831,
+    "dev_gain_f1": 0.024976592472855663,
+    "p_improve": 0.986,
+    "decision": "accepted",
+    "reason": "no gates in this ablation: always accept",
+    "gates": {},
+    "tau_next": 0.6,
+    "cum_human_labels": 0,
+    "cum_pseudo_labels": 4562,
+    "cum_pseudo_true_precision": 0.9230600613765892,
+    "incumbent_dev_acc": 0.748,
+    "incumbent_dev_f1": 0.7295940675389831
+   }
+  ]
+ },
+ "sweep": [
+  {
+   "T": 1.0,
+   "alpha": 0.0,
+   "dev_acc": 0.751,
+   "dev_f1": 0.7334828557303498
+  },
+  {
+   "T": 1.0,
+   "alpha": 0.5,
+   "dev_acc": 0.749,
+   "dev_f1": 0.7304324278885282
+  },
+  {
+   "T": 2.0,
+   "alpha": 0.0,
+   "dev_acc": 0.73,
+   "dev_f1": 0.7153436720177062
+  },
+  {
+   "T": 2.0,
+   "alpha": 0.5,
+   "dev_acc": 0.729,
+   "dev_f1": 0.7146527967695253
+  },
+  {
+   "T": 4.0,
+   "alpha": 0.0,
+   "dev_acc": 0.729,
+   "dev_f1": 0.7147988717508135
+  },
+  {
+   "T": 4.0,
+   "alpha": 0.5,
+   "dev_acc": 0.729,
+   "dev_f1": 0.713817956025714
+  },
+  {
+   "T": 8.0,
+   "alpha": 0.0,
+   "dev_acc": 0.732,
+   "dev_f1": 0.717525574650571
+  },
+  {
+   "T": 8.0,
+   "alpha": 0.5,
+   "dev_acc": 0.729,
+   "dev_f1": 0.7142862607236464
+  }
+ ],
+ "sweep_best": {
+  "T": 1.0,
+  "alpha": 0.0,
+  "dev_acc": 0.751,
+  "dev_f1": 0.7334828557303498
+ },
+ "human_labels_full": 400,
+ "failure": {
+  "per_class_recall": {
+   "teacher0": [
+    0.875,
+    0.925,
+    0.95,
+    0.975,
+    0.7,
+    0.9,
+    0.625,
+    0.825,
+    0.775,
+    0.775,
+    0.925,
+    0.575,
+    0.775,
+    0.5,
+    0.825,
+    0.825,
+    0.6,
+    0.65,
+    0.775,
+    0.9,
+    0.7,
+    0.55,
+    0.875,
+    0.85,
+    0.925,
+    0.625,
+    0.75,
+    0.75,
+    0.575,
+    0.55,
+    0.65,
+    0.95,
+    0.725,
+    0.95,
+    0.75,
+    0.75,
+    0.6,
+    0.625,
+    0.8,
+    0.925,
+    0.7,
+    0.95,
+    0.75,
+    0.875,
+    0.525,
+    0.95,
+    0.9,
+    0.7,
+    0.425,
+    0.6,
+    0.75,
+    0.8,
+    0.65,
+    0.475,
+    0.7,
+    0.9,
+    0.6,
+    0.625,
+    0.8,
+    0.55,
+    0.9,
+    0.675,
+    0.5,
+    0.725,
+    0.775,
+    0.6,
+    0.45,
+    0.875,
+    0.675,
+    0.725,
+    1.0,
+    1.0,
+    0.475,
+    0.925,
+    0.375,
+    0.7,
+    0.725
+   ],
+   "teacher_full": [
+    0.9,
+    0.925,
+    1.0,
+    1.0,
+    0.925,
+    0.925,
+    0.675,
+    0.95,
+    0.75,
+    0.85,
+    0.95,
+    0.575,
+    0.775,
+    0.625,
+    0.85,
+    0.7,
+    0.75,
+    0.775,
+    0.85,
+    0.9,
+    0.85,
+    0.8,
+    0.925,
+    0.85,
+    0.9,
+    0.8,
+    0.8,
+    0.75,
+    0.6,
+    0.675,
+    0.725,
+    1.0,
+    0.85,
+    0.975,
+    0.8,
+    0.8,
+    0.7,
+    0.575,
+    0.675,
+    0.925,
+    0.775,
+    0.975,
+    0.825,
+    0.975,
+    0.575,
+    1.0,
+    0.925,
+    0.875,
+    0.55,
+    0.675,
+    0.775,
+    0.7,
+    0.65,
+    0.7,
+    0.875,
+    0.95,
+    0.6,
+    0.75,
+    0.65,
+    0.5,
+    0.9,
+    0.775,
+    0.5,
+    0.975,
+    0.825,
+    0.7,
+    0.525,
+    0.9,
+    0.575,
+    0.85,
+    1.0,
+    1.0,
+    0.675,
+    0.925,
+    0.4,
+    0.85,
+    0.575
+   ],
+   "student_s4": [
+    0.925,
+    0.925,
+    1.0,
+    1.0,
+    0.8,
+    0.95,
+    0.675,
+    0.875,
+    0.65,
+    0.9,
+    0.95,
+    0.45,
+    0.875,
+    0.65,
+    0.875,
+    0.725,
+    0.675,
+    0.75,
+    0.775,
+    0.875,
+    0.775,
+    0.775,
+    0.9,
+    0.875,
+    0.85,
+    0.775,
+    0.8,
+    0.8,
+    0.55,
+    0.65,
+    0.75,
+    0.975,
+    0.8,
+    0.925,
+    0.8,
+    0.8,
+    0.775,
+    0.625,
+    0.675,
+    0.875,
+    0.775,
+    0.95,
+    0.875,
+    0.975,
+    0.55,
+    1.0,
+    0.9,
+    0.925,
+    0.525,
+    0.55,
+    0.75,
+    0.675,
+    0.575,
+    0.7,
+    0.95,
+    0.925,
+    0.65,
+    0.725,
+    0.75,
+    0.525,
+    0.95,
+    0.775,
+    0.425,
+    1.0,
+    0.775,
+    0.8,
+    0.475,
+    0.85,
+    0.575,
+    0.85,
+    1.0,
+    1.0,
+    0.65,
+    0.925,
+    0.375,
+    0.875,
+    0.525
+   ]
+  },
+  "top_confusions_student": [
+   {
+    "true": "why_verify_identity",
+    "pred": "verify_my_identity",
+    "count": 24
+   },
+   {
+    "true": "topping_up_by_card",
+    "pred": "supported_cards_and_currencies",
+    "count": 11
+   },
+   {
+    "true": "declined_transfer",
+    "pred": "declined_card_payment",
+    "count": 11
+   },
+   {
+    "true": "unable_to_verify_identity",
+    "pred": "verify_my_identity",
+    "count": 10
+   },
+   {
+    "true": "card_delivery_estimate",
+    "pred": "card_arrival",
+    "count": 9
+   },
+   {
+    "true": "card_acceptance",
+    "pred": "card_not_working",
+    "count": 9
+   },
+   {
+    "true": "card_payment_fee_charged",
+    "pred": "extra_charge_on_statement",
+    "count": 8
+   },
+   {
+    "true": "pending_transfer",
+    "pred": "transfer_timing",
+    "count": 8
+   },
+   {
+    "true": "transfer_not_received_by_recipient",
+    "pred": "balance_not_updated_after_bank_transfer",
+    "count": 7
+   },
+   {
+    "true": "request_refund",
+    "pred": "Refund_not_showing_up",
+    "count": 7
+   },
+   {
+    "true": "receiving_money",
+    "pred": "exchange_via_app",
+    "count": 7
+   },
+   {
+    "true": "get_disposable_virtual_card",
+    "pred": "disposable_card_limits",
+    "count": 7
+   }
+  ],
+  "examples": [
+   {
+    "text": "How do I locate my card?",
+    "true": "card_arrival",
+    "student": "order_physical_card",
+    "teacher": "get_physical_card"
+   },
+   {
+    "text": "When will I get my card?",
+    "true": "card_arrival",
+    "student": "card_delivery_estimate",
+    "teacher": "card_delivery_estimate"
+   },
+   {
+    "text": "How long does a card delivery take?",
+    "true": "card_arrival",
+    "student": "card_delivery_estimate",
+    "teacher": "card_delivery_estimate"
+   },
+   {
+    "text": "I've been waiting longer than expected for my card.",
+    "true": "card_arrival",
+    "student": "card_delivery_estimate",
+    "teacher": "card_delivery_estimate"
+   },
+   {
+    "text": "How long should my new card take to arrive?",
+    "true": "card_arrival",
+    "student": "card_delivery_estimate",
+    "teacher": "card_delivery_estimate"
+   },
+   {
+    "text": "Why won't my card show up on the app?",
+    "true": "card_linking",
+    "student": "topping_up_by_card",
+    "teacher": "card_not_working"
+   },
+   {
+    "text": "I received my new card, but I don't see it in the app anywhere.  What do I do?",
+    "true": "card_linking",
+    "student": "card_arrival",
+    "teacher": "card_arrival"
+   },
+   {
+    "text": "How do I add the card to my account?",
+    "true": "card_linking",
+    "student": "topping_up_by_card",
+    "teacher": "supported_cards_and_currencies"
+   },
+   {
+    "text": "Is there a way to make my old card usable with the app?",
+    "true": "card_linking",
+    "student": "card_payment_not_recognised",
+    "teacher": "exchange_via_app"
+   },
+   {
+    "text": "Where do I need to go in the app to enter my card info?",
+    "true": "card_linking",
+    "student": "card_acceptance",
+    "teacher": "activate_my_card"
+   },
+   {
+    "text": "Is it a good time to exchange?",
+    "true": "exchange_rate",
+    "student": "exchange_charge",
+    "teacher": "exchange_charge"
+   },
+   {
+    "text": "Can you tell me the foreign exchange rate?",
+    "true": "exchange_rate",
+    "student": "card_payment_wrong_exchange_rate",
+    "teacher": "exchange_rate"
+   },
+   {
+    "text": "when does the rate get determined",
+    "true": "exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "exchange_rate"
+   },
+   {
+    "text": "I made a currency exchange and think I was charged more than I should of been.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "fiat_currency_support",
+    "teacher": "exchange_charge"
+   },
+   {
+    "text": "The exchange rate was wrong when I bought something outside the country.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "wrong_exchange_rate_for_cash_withdrawal"
+   },
+   {
+    "text": "This rate is too low. Are you sure your using the right exchange rate.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "exchange_rate",
+    "teacher": "exchange_rate"
+   },
+   {
+    "text": "The rate applied to my foreign purchase was incorrect",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "card_payment_wrong_exchange_rate"
+   },
+   {
+    "text": "My exchange went wrong. I swapped Russian Ruble for UK pounds and was charged too much.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "card_payment_wrong_exchange_rate"
+   },
+   {
+    "text": "Why am I being charged more ?",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "transfer_fee_charged",
+    "teacher": "transfer_fee_charged"
+   },
+   {
+    "text": "The exchange rate seems off on this transaction",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "exchange_rate",
+    "teacher": "exchange_rate"
+   },
+   {
+    "text": "the conversion value for my card payments is incorrect.",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "declined_card_payment",
+    "teacher": "card_payment_wrong_exchange_rate"
+   },
+   {
+    "text": "How can I check the exchange rate applied to my transaction?",
+    "true": "card_payment_wrong_exchange_rate",
+    "student": "wrong_exchange_rate_for_cash_withdrawal",
+    "teacher": "wrong_exchange_rate_for_cash_withdrawal"
+   },
+   {
+    "text": "There is a fee I don't recognize on my statement.",
+    "true": "extra_charge_on_statement",
+    "student": "card_payment_not_recognised",
+    "teacher": "card_payment_not_recognised"
+   },
+   {
+    "text": "I do not remember purchasing anything for 1\u00a3, and it is on my statement. Can you please tell me what that is about?",
+    "true": "extra_charge_on_statement",
+    "student": "card_payment_not_recognised",
+    "teacher": "card_payment_not_recognised"
+   },
+   {
+    "text": "When will the $1 transaction be credited to me?",
+    "true": "extra_charge_on_statement",
+    "student": "transfer_timing",
+    "teacher": "transfer_not_received_by_recipient"
+   }
+  ],
+  "student_teacher_agreement": 0.8886363636363637
+ },
+ "runtime_sec": 1540.3146154880524
+}
